@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+   <class name = "com.Model" table = "db1" >
+      <id name = "sid" type = "string" column = "ID">
+         	<generator class="com.CustomIdGenerator"/>        
+      </id>   
+	   
+      
+	  <property name = "sname" column = "uname" type = "string"/>
+	  <property name = "spass" column = "upass" type = "string"/>
+	  
+
+	  <joined-subclass name = "com.Teacher" discriminator-value="Teacher">
+	      <key column="ID"></key>
+	      <property name="subjects" column="subject"></property>
+	  </joined-subclass>	
+	  
+	  <joined-subclass name = "com.Student" discriminator-value="Student">
+	      <key column="ID"></key>
+	      <property name="branch" column="branch"></property>
+	  </joined-subclass>
+	  
+   </class>
+</hibernate-mapping>
